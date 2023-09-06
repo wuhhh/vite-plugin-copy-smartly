@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "rm -rf dist/ && rollup -c -w",
     "build": "rm -rf dist/ && rollup -c",
-    "test": "vitest --run --coverage",
     "prepare": "npm run build"
   },
   "keywords": [
