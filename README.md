@@ -33,11 +33,11 @@ import copy from "vite-plugin-copy-smartly";
 export default {
     ...
     plugins: [
-       copy({
-					src: path.resolve(__dirname, "src/public/"),
-					pattern: /\.(svg|png|jpg|gif|webp|json|lottie)$/,
-					dest: path.resolve(__dirname, "web/dist/"),
-			}),
+       	copy({
+			src: path.resolve(__dirname, "src/public/"),
+			pattern: /\.(svg|png|jpg|gif|webp|json|lottie)$/,
+			dest: path.resolve(__dirname, "web/dist/"),
+		}),
     ],
 };
 ```
