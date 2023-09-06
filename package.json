@@ -1,7 +1,7 @@
 {
-  "name": "rollup-copy-smartly",
-  "version": "2.0.0",
-  "description": "a rollup copy plugin",
+  "name": "vite-plugin-copy-smartly",
+  "version": "0.1.0-alpha",
+  "description": "a hacked version of rollup-plugin-copy to support vite",
   "main": "dist/lib/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -12,11 +12,13 @@
     "prepare": "npm run build"
   },
   "keywords": [
-    "rollup",
+		"vite",
+		"watch",
     "copy",
-    "plugin"
+    "plugin",
+    "rollup"
   ],
-  "author": "TrickyPi",
+  "author": "Huw Roberts & TrickyPi",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.2",
@@ -37,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TrickyPi/rollup-copy-smartly.git"
+    "url": "git+https://github.com/wuhhh/vite-plugin-copy-smartly.git"
   },
-  "homepage": "https://github.com/TrickyPi/rollup-copy-smartly#readme"
+  "homepage": "https://github.com/wuhhh/vite-plugin-copy-smartly#readme"
 }
