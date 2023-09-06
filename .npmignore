@@ -1,7 +1,2 @@
-/__tests__
-/coverage/
 /src/
-/.editorconfig
-/pnpm-lock.yaml
-/tsconfig.json
-rollup.config.mjs
+/package-lock.json

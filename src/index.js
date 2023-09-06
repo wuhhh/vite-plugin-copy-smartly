@@ -1,21 +1,8 @@
 import { resolve, relative } from "path";
-import fse, { Dirent } from "fs-extra";
-import chokidar, { type FSWatcher } from "chokidar";
-import type { Plugin } from "rollup";
+import fse from "fs-extra";
+import chokidar from "chokidar";
 
-type Arrayable<T> = T | Array<T>;
-interface NormalizedTarget {
-  src: string;
-  pattern: RegExp[];
-  dest: string[];
-}
-interface CopyTarget {
-  src: string;
-  pattern: RegExp | RegExp[];
-  dest: string | string[];
-}
-
-function isCopyFile(file: string, pattern: NormalizedTarget["pattern"]) {
+function isCopyFile(file, pattern) {
   let isCopyFile = false;
   for (let item of pattern) {
     if (item.test(file)) {
@@ -25,8 +12,7 @@ function isCopyFile(file: string, pattern: NormalizedTarget["pattern"]) {
   }
   return isCopyFile;
 }
-
-function createWatcher(sources: string) {
+function createWatcher(sources) {
   return chokidar.watch(sources, {
     ignoreInitial: true,
     awaitWriteFinish: {
@@ -34,13 +20,12 @@ function createWatcher(sources: string) {
     },
   });
 }
-
-function initWatcher({ src, pattern, dest }: NormalizedTarget) {
+function initWatcher({ src, pattern, dest }) {
   const watcher = createWatcher(src);
   watcher.on("unlink", handleEevent.bind(null, "unlink"));
   watcher.on("add", handleEevent.bind(null, "add"));
   watcher.on("change", handleEevent.bind(null, "change"));
-  function handleEevent(event: "unlink" | "add" | "change", file: string) {
+  function handleEevent(event, file) {
     const absoluteFile = resolve(file);
     if (!isCopyFile(absoluteFile, pattern)) return;
     dest.forEach((destItem) => {
@@ -58,9 +43,8 @@ function initWatcher({ src, pattern, dest }: NormalizedTarget) {
   }
   return watcher;
 }
-
-function getFile(dir: string) {
-  function readdir(dir: string): [Dirent, string][] {
+function getFile(dir) {
+  function readdir(dir) {
     return fse.readdirSync(dir, { withFileTypes: true }).map((item) => {
       return [item, resolve(dir, item.name)];
     });
@@ -68,8 +52,8 @@ function getFile(dir: string) {
   let files = [];
   const stack = readdir(dir);
   while (stack.length) {
-    const [item, absolutePath] = stack.shift()!;
-    if (item!.isDirectory()) {
+    const [item, absolutePath] = stack.shift();
+    if (item.isDirectory()) {
       stack.push(...readdir(absolutePath));
     } else {
       files.push(absolutePath);
@@ -77,22 +61,19 @@ function getFile(dir: string) {
   }
   return files;
 }
-
-function normalize({ src, pattern, dest }: CopyTarget) {
+function normalize({ src, pattern, dest }) {
   return {
     src,
     pattern: toArray(pattern),
     dest: toArray(dest),
   };
 }
-
-function toArray<T>(value: Arrayable<T>): Array<T> {
+function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
-
-export default function copy(copyTarget: CopyTarget): Plugin {
+function copy(copyTarget) {
   const { src, pattern, dest } = normalize(copyTarget);
-  let watcher: FSWatcher | null = null;
+  let watcher = null;
   return {
     name: "copy",
     buildStart() {
@@ -115,3 +96,5 @@ export default function copy(copyTarget: CopyTarget): Plugin {
     },
   };
 }
+
+export { copy as default };

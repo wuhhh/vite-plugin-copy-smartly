@@ -2,14 +2,7 @@
   "name": "vite-plugin-copy-smartly",
   "version": "0.1.0-alpha",
   "description": "a hacked version of rollup-plugin-copy to support vite",
-  "main": "dist/lib/index.js",
-  "module": "dist/es/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "dev": "rm -rf dist/ && rollup -c -w",
-    "build": "rm -rf dist/ && rollup -c",
-    "prepare": "npm run build"
-  },
+  "main": "src/index.js",
   "keywords": [
 		"vite",
 		"watch",
@@ -17,23 +10,14 @@
     "plugin",
     "rollup"
   ],
-  "author": "Huw Roberts & TrickyPi",
+  "author": "Huw Roberts",
   "license": "MIT",
-  "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.2",
-    "@types/fs-extra": "^9.0.13",
-    "c8": "^7.11.0",
-    "memfs": "^3.4.1",
-    "rollup": "^3.26.3",
-    "tslib": "^2.6.0",
-    "typescript": "^4.5.5"
-  },
   "dependencies": {
     "chokidar": "^3.5.3",
     "fs-extra": "^10.0.0"
   },
   "peerDependencies": {
-    "rollup": ">=3.0.0"
+    "vite": ">=4.2.1"
   },
   "repository": {
     "type": "git",
