@@ -1,0 +1,43 @@
+{
+  "name": "rollup-copy-smartly",
+  "version": "2.0.0",
+  "description": "a rollup copy plugin",
+  "main": "dist/lib/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "rm -rf dist/ && rollup -c -w",
+    "build": "rm -rf dist/ && rollup -c",
+    "test": "vitest --run --coverage",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "rollup",
+    "copy",
+    "plugin"
+  ],
+  "author": "TrickyPi",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@types/fs-extra": "^9.0.13",
+    "c8": "^7.11.0",
+    "memfs": "^3.4.1",
+    "rollup": "^3.26.3",
+    "tslib": "^2.6.0",
+    "typescript": "^4.5.5",
+    "vitest": "^0.3.3"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "fs-extra": "^10.0.0"
+  },
+  "peerDependencies": {
+    "rollup": ">=3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TrickyPi/rollup-copy-smartly.git"
+  },
+  "homepage": "https://github.com/TrickyPi/rollup-copy-smartly#readme"
+}
