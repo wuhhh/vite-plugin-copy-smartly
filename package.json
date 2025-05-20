@@ -5,6 +5,10 @@
 	"type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.cjs"
+  },
   "scripts": {
     "build": "esbuild src/index.mjs --platform=node --bundle --format=esm --outfile=dist/index.mjs --external:fs-extra --external:chokidar && esbuild src/index.mjs --platform=node --bundle --format=cjs --outfile=dist/index.cjs --external:fs-extra --external:chokidar",
     "test": "echo \"Error: no test specified\" && exit 1",
