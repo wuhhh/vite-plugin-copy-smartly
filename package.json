@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-copy-smartly",
-  "version": "0.1.1-alpha",
+  "version": "0.1.2",
   "description": "a hacked version of rollup-plugin-copy to support vite",
 	"type": "module",
   "main": "dist/index.cjs",
