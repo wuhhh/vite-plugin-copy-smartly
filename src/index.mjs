@@ -97,4 +97,4 @@ function copy(copyTarget) {
   };
 }
 
-export { copy as default };
+export default copy;
